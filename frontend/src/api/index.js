@@ -1,4 +1,4 @@
-export const SERVER_BASE_URL = `http://localhost:3001`;
+export const SERVER_BASE_URL = `https://book-review-hfsh.onrender.com`;
 
 export const API = {
   users: {
