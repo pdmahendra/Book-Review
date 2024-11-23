@@ -34,7 +34,7 @@ const Home = () => {
         </g>
       </svg>
       <div className="md:flex p-6 md:p-10 lg:p-36 w-full">
-        <div className="space-y-6 w-[80%]">
+        <div className="space-y-6 w-[100%] md:w-[80%]">
           <h1 className="text-4xl md:text-6xl text-[#ff6023] font-bold">
             Hi, We're Books World.
           </h1>

@@ -25,7 +25,7 @@ const Header = () => {
             fill="#FF500A"
           />
         </svg>
-        <h1 className="text-sm md:text-lg font-semibold cursor-pointer">
+        <h1 className="text-lg font-semibold cursor-pointer">
           Book Review Platform
         </h1>
       </Link>
