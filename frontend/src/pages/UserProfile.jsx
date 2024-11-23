@@ -32,8 +32,8 @@ const UserProfile = () => {
         {reviews &&
           reviews.map((review) => (
             <li key={review._id} className="border-b py-2">
-              <span className="font-medium">{review.bookId.title}</span> :{" "}
-              {review.comment}
+              <span className="font-medium">{review?.bookId?.title}</span> :{" "}
+              {review?.comment}
             </li>
           ))}
       </ul>
