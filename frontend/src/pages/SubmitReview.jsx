@@ -2,17 +2,18 @@ import { useState } from "react";
 import { addReview } from "../api/query/reviewQuery";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const SubmitReview = () => {
   const { id } = useParams();
   const [review, setReview] = useState("");
-
+  const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: addReview,
     onSuccess: () => {
       toast.success("Review submitted successfully!");
       setReview("");
+      navigate(`/books/${id}`)
     },
     onError: () => {
       toast.error("Failed to submit the review.");
