@@ -3,8 +3,10 @@ import handleImageUpload from "../api/query/uploadQuery";
 import { addNewBook } from "../api/query/bookQuery";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-
+import { useNavigate } from "react-router-dom";
 const AddBook = () => {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -45,6 +47,7 @@ const AddBook = () => {
       setImageUrl("");
       setLanguage("");
       fileInputRef.current.value = "";
+      navigate("/books");
     },
     onError: () => {
       toast.error("Failed to add the book.");
