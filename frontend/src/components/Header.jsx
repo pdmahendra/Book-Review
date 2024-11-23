@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { useUser } from "../context/userContext";
+import { useState } from "react";
 
 const Header = () => {
   const { user, handleLogout } = useUser();
-    
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen((prev) => !prev);
+  };
+  
   return (
     <header className="sticky top-0 bg-white text-black p-6 flex justify-between border-2 border-b">
       <Link to={"/"} className="flex gap-x-4 cursor-pointer">
@@ -19,45 +25,105 @@ const Header = () => {
             fill="#FF500A"
           />
         </svg>
-        <h1 className="text-lg font-semibold cursor-pointer">
+        <h1 className="text-sm md:text-lg font-semibold cursor-pointer">
           Book Review Platform
         </h1>
       </Link>
       {!user ? (
         <nav>
-          <Link to="/sign-in" className="mr-6 font-medium hover:text-[#ff6023]">
+          <Link
+            to="/sign-in"
+            className="text-xs md:text-sm mr-6 font-medium hover:text-[#ff6023]"
+          >
             Sign In
           </Link>{" "}
-          <Link to="/sign-up" className="mr-6 font-medium hover:text-[#ff6023]">
+          <Link
+            to="/sign-up"
+            className="text-xs md:text-sm mr-6 font-medium hover:text-[#ff6023]"
+          >
             Sign Up
           </Link>{" "}
         </nav>
       ) : (
         <nav>
-          <Link to="/" className="mr-6 font-medium hover:text-[#ff6023]">
+          <Link
+            to="/"
+            className="max-md:hidden mr-6 font-medium hover:text-[#ff6023]"
+          >
             Home
           </Link>
-          <Link to="/books" className="mr-6 font-medium hover:text-[#ff6023]">
+          <Link
+            to="/books"
+            className="max-md:hidden mr-6 font-medium hover:text-[#ff6023]"
+          >
             Books
           </Link>
           {user && user.userType === "admin" && (
             <Link
               to="/books/add"
-              className="mr-6 font-medium hover:text-[#ff6023]"
+              className="max-md:hidden mr-6 font-medium hover:text-[#ff6023]"
             >
               Add Book
             </Link>
           )}
-          <Link to="/profile" className="mr-6 font-medium hover:text-[#ff6023]">
+          <Link
+            to="/profile"
+            className="max-md:hidden mr-6 font-medium hover:text-[#ff6023]"
+          >
             Profile
           </Link>
           <Link
             to="/"
-            className="font-medium hover:text-[#ff6023]"
+            className="max-md:hidden font-medium hover:text-[#ff6023]"
             onClick={handleLogout}
           >
             Logout
           </Link>
+          <div className="md:hidden" onClick={handleClick}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+            {isOpen && (
+              <div className="p-6 absolute left-0 w-full top-16 bg-white shadow-md rounded-md flex flex-col items-center space-y-4 z-50">
+                {" "}
+                <Link to="/" className="md:hidden hover:text-[#ff6023]">
+                  Home
+                </Link>
+                <Link to="/books" className="md:hidden hover:text-[#ff6023]">
+                  Books
+                </Link>
+                {user && user.userType === "admin" && (
+                  <Link
+                    to="/books/add"
+                    className="md:hidden hover:text-[#ff6023]"
+                  >
+                    Add Book
+                  </Link>
+                )}
+                <Link to="/profile" className="md:hidden hover:text-[#ff6023]">
+                  Profile
+                </Link>
+                <Link
+                  to="/"
+                  className="md:hidden hover:text-[#ff6023]"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
       )}
     </header>

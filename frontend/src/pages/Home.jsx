@@ -23,7 +23,7 @@ const Home = () => {
         width="472"
         height="535"
         viewBox="0 0 472 535"
-        className="absolute right-0 z-[-1] top-16"
+        className="absolute right-0 z-[-1] top-16 hidden sm:block"
       >
         <g fill="none" fill-rule="evenodd">
           <path fill="#FFF" d="M-968-52H472v4897H-968z" />
@@ -33,15 +33,15 @@ const Home = () => {
           />
         </g>
       </svg>
-      <div className="flex p-36  w-full">
+      <div className="md:flex p-6 md:p-10 lg:p-36 w-full">
         <div className="space-y-6 w-[80%]">
-          <h1 className="text-6xl text-[#ff6023] font-bold">
+          <h1 className="text-4xl md:text-6xl text-[#ff6023] font-bold">
             Hi, We're Books World.
           </h1>
-          <h3 className="text-black text-2xl">
+          <h3 className="text-black text-lg md:text-2xl">
             The World's largest Books store
           </h3>
-          <p className="text-xl text-gray-600">
+          <p className="text-sm sm:text-xl text-gray-600">
             Home to 100 million people¹ who love original stories, Books World
             has democratized storytelling for a new generation of diverse Gen Z
             writers and their fans.
@@ -51,14 +51,14 @@ const Home = () => {
             <div className="flex gap-4 text-white">
               <Link
                 to={"/books"}
-                className="bg-[#ff6023] px-8 py-2 rounded-lg hover:shadow-lg"
+                className="text-xs md:text-sm bg-[#ff6023] px-8 py-2 rounded-lg hover:shadow-lg"
               >
                 Start Reading
               </Link>
               {user && user.userType === "admin" && (
                 <Link
                   to={"/books/add"}
-                  className="bg-[#ff6023] px-8 py-2 rounded-lg hover:shadow-lg"
+                  className="text-xs md:text-sm bg-[#ff6023] px-8 py-2 rounded-lg hover:shadow-lg"
                 >
                   Add Your Book
                 </Link>
@@ -68,15 +68,17 @@ const Home = () => {
             ""
           )}
         </div>
-        <div className="p-0 pt-10">
+        <div className="p-0 pt-10 max-md:hidden">
           <img src="/hero-devices.png" alt="" className="" />
         </div>
       </div>
       {user ? (
         <>
           {" "}
-          <h1 className="text-2xl font-semibold mb-4">Featured Books</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <h1 className="pl-4 md:pl-0 text-lg md:text-2xl font-semibold mb-4">
+            Featured Books
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {featuredBooks &&
               featuredBooks
                 .slice(0, 3)

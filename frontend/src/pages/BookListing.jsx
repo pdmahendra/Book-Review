@@ -43,12 +43,12 @@ const BookListing = () => {
         <input
           type="text"
           placeholder="Search books..."
-          className="border p-2 mb-4"
+          className="border rounded-xl p-2 mb-4 w-full md:w-auto"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredBooks.map((book) => (
           <BookCard key={book._id} book={book} />
         ))}
